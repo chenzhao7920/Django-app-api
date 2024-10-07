@@ -14,13 +14,6 @@ services:
       - "8000:8000"
     depends_on:
       - db
-    environment:
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_HOST=db  # Referencing the db service as the host
-    env_file:
-      - .env
 
   db:
     image: postgres:13
