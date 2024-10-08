@@ -17,14 +17,13 @@ services:
 
   db:
     image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/djangoPostgresql/data
     environment:
-      - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    env_file:
-      - .env
-
+      - POSTGRES_DB=${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/djangoPostgresql/data
 volumes:
   postgres_data:
