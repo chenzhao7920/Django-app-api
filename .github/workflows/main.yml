@@ -1,5 +1,7 @@
+# This workflow demonstrates building a container image, 
+# Log in to docker hub account and add automated testing and linting checks
 ---
-name: dev
+name: Main 
 on: 
   push:
     branches: main
@@ -16,6 +18,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Test
-        run: docker-compose run --rm app python manage.py test
+        run: docker compose run --rm app python manage.py test
       - name: Lint
-        run: docker-compose run --rm app python -m flake8
+        run: docker compose run --rm app python -m flake8
