@@ -1,4 +1,4 @@
-FROM python:3.12-alpine3.20
+FROM python:3.9-alpine3.13
 LABEL maintainer="chenzhao"
 
 ENV PYTHONUNBUFFERED 1
@@ -15,15 +15,15 @@ RUN python -m venv /py && \
     apk add --update --no-cache --virtual .tmp-build-deps \
         build-base postgresql-dev musl-dev && \
     /py/bin/pip install -r /tmp/requirements.txt &&  \
-    if [ $DEV = "TRUE"]; \
+    if [ $DEV = "true"]; \
         then /py/bin/pip install -r /tmp/requirements.dev.txt; \
-    fi  && \   
+    fi  && \
     rm -rf /tmp && \
     apk del .tmp-build-deps && \
     adduser \
-    --disabled-password \
-    --no-create-home \
-    django-user
+        --disabled-password \
+        --no-create-home \
+        django-user
 
 ENV PATH='/py/bin:$PATH'
 
