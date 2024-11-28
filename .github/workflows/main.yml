@@ -1,8 +1,8 @@
-# This workflow demonstrates building a container image, 
+# This workflow demonstrates building a container image,
 # Log in to docker hub account and add automated testing and linting checks
 ---
-name: Main 
-on: 
+name: Main
+on:
   push:
     branches: main
 
@@ -23,6 +23,6 @@ jobs:
           echo POSTGRES_USER=${{ secrets.POSTGRES_USER }} >> .env
           echo POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }} >> .env
       - name: Test
-        run: docker compose run --rm app python manage.py test
+        run: docker compose run --rm app python manage.py wait_for_db && python manage.py test
       - name: Lint
         run: docker compose run --rm app python -m flake8
