@@ -11,3 +11,7 @@ commands:
 - to build and run
   docker-compose build --no-cache
   docker-compose up
+
+Admin login:
+email: admin@example.com
+password: admin
